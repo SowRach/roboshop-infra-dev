@@ -1,6 +1,6 @@
 variable "bucket_name" {
   type    = string
-  default = "roboshop-dev-stage"
+  default = "roboshop-dev-sowmya-r"
 }
 
 variable "project_name" {
