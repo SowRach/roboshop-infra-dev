@@ -22,15 +22,15 @@ pipeline {
             }
         }
 
-        stage('s3 destroy') {
-            steps {
-                sh """
-                    cd 00-terraform-s3
-                    terraform init -reconfigure
-                    terraform destroy -auto-approve
-                """
-            }
-        }
+        // stage('s3 destroy') {
+        //     steps {
+        //         sh """
+        //             cd 00-terraform-s3
+        //             terraform init -reconfigure
+        //             terraform destroy -auto-approve
+        //         """
+        //     }
+        // }
     }
 
     post {  
