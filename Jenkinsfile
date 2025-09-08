@@ -9,18 +9,18 @@ pipeline {
         disableConcurrentBuilds()
     }
 
-    // build
-    // stages {
-    //     stage('s3 Backend') {
-    //         steps {
-    //             sh """
-    //                 cd 00-terraform-s3
-    //                 terraform init -reconfigure
-    //                 terraform plan 
-    //                 terraform apply -auto-approve
-    //             """
-    //         }
-    //     }
+    build
+    stages {
+        stage('s3 Backend') {
+            steps {
+                sh """
+                    cd 00-terraform-s3
+                    terraform init -reconfigure
+                    terraform plan 
+                    terraform apply -auto-approve
+                """
+            }
+        }
         stage('Init') {
             steps {
                 sh """
