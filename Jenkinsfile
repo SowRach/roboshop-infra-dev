@@ -9,7 +9,6 @@ pipeline {
         disableConcurrentBuilds()
     }
 
-    //build
     stages {
         stage('s3 Backend') {
             steps {
@@ -21,6 +20,7 @@ pipeline {
                 """
             }
         }
+
         stage('Init') {
             steps {
                 sh """
@@ -29,6 +29,7 @@ pipeline {
                 """
             }
         }
+
         stage('Plan') {
             steps {
                 sh """
@@ -37,14 +38,11 @@ pipeline {
                 """
             }
         }
+
         stage('Deploy') {
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
-                // submitter "alice,bob"
-                // parameters {
-                //     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                // }
             }
             steps {
                 sh """
@@ -53,10 +51,26 @@ pipeline {
                 """
             }
         }
-        
+
+        stage('s3 destroy') {
+            steps {
+                sh """
+                    cd 00-terraform-s3 
+                    terraform destroy -auto-approve
+                """
+            }
+        }
+
+        stage('vpc destroy') {
+            steps {
+                sh """
+                    cd 01-vpc
+                    terraform destroy -auto-approve
+                """
+            }
+        }
     }
-    
-    // post build
+
     post {  
         always { 
             echo 'I will always say Hello again!'
@@ -64,7 +78,7 @@ pipeline {
         failure { 
             echo 'this runs when pipeline is failed, used generally to send some alerts'
         }
-        success{
+        success {
             echo 'I will say Hello when pipeline is success'
         }
     }
