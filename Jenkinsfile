@@ -9,7 +9,7 @@ pipeline {
         disableConcurrentBuilds()
     }
 
-    build
+    //build
     stages {
         stage('s3 Backend') {
             steps {
