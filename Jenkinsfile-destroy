@@ -10,49 +10,25 @@ pipeline {
     }
 
     stages {
-        stage('s3 Backend') {
+        stage('s3 destroy') {
             steps {
                 sh """
                     cd 00-terraform-s3
-                    terraform init -reconfigure
-                    terraform plan 
-                    terraform apply -auto-approve
+                    
+                    terraform destroy -auto-approve
                 """
             }
         }
 
-        stage('Init') {
+        stage('vpc destroy') {
             steps {
                 sh """
                     cd 01-vpc
-                    terraform init -reconfigure 
+                    terraform destroy -auto-approve
                 """
             }
         }
-
-        stage('Plan') {
-            steps {
-                sh """
-                    cd 01-vpc
-                    terraform plan 
-                """
-            }
-        }
-
-        stage('Deploy') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-            }
-            steps {
-                sh """
-                    cd 01-vpc
-                    terraform apply -auto-approve
-                """
-            }
-        }
-
-        
+    }
 
     post {  
         always { 
@@ -64,5 +40,7 @@ pipeline {
         success {
             echo 'I will say Hello when pipeline is success'
         }
+        
     }
+
 }
