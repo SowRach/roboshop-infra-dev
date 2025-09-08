@@ -10,20 +10,22 @@ pipeline {
     }
 
     stages {
-        stage('s3 destroy') {
+        
+
+        stage('vpc destroy') {
             steps {
                 sh """
-                    cd 00-terraform-s3
+                    cd 01-vpc
                     terraform init
                     terraform destroy -auto-approve
                 """
             }
         }
 
-        stage('vpc destroy') {
+        stage('s3 destroy') {
             steps {
                 sh """
-                    cd 01-vpc
+                    cd 00-terraform-s3
                     terraform init
                     terraform destroy -auto-approve
                 """
