@@ -1,5 +1,6 @@
 module "vpn" {
-  source = "../../terraform_aws_instance"
+  # source = "../../terraform_aws_instance"
+  source       = "git::https://github.com/SowRach/terraform_aws_instance.git?ref=main"
 
   ami                    = data.aws_ami.centos8.id
   ec2_name               = "vpn"

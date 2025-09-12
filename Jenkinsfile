@@ -44,15 +44,15 @@ pipeline {
             }
             
         }
-        // stage('VPN') {
-        //     steps {
-        //         sh """
-        //             cd 03-vpn
-        //             terraform init -reconfigure
-        //             terraform plan
-        //             terraform apply -auto-approve
-        //         """
-        //     }
+        stage('VPN') {
+            steps {
+                sh """
+                    cd 03-vpn
+                    terraform init -reconfigure
+                    terraform plan
+                    terraform apply -auto-approve
+                """
+            }
             
         // }
         // stage('Databases') {
