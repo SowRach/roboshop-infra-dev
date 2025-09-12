@@ -24,5 +24,5 @@ variable "ec2_name" {
 }
 
 variable "zone_id" {
-  default = "Z03044631C5X7QPVBUFG0"
+  default = "Z07176522V8YPHJACQNO8"
 }
