@@ -5,8 +5,9 @@ pipeline {
         }
     }
     options {
-        timeout(time: 1, unit: 'HOURS')
-        disableConcurrentBuilds()
+        ansiColor('xterm')
+        // timeout(time: 1, unit: 'HOURS')
+        // disableConcurrentBuilds()
     }
 
     stages {
@@ -21,35 +22,27 @@ pipeline {
             }
         }
 
-        stage('Init') {
+        stage('vpc') {
             steps {
                 sh """
                     cd 01-vpc
-                    terraform init -reconfigure 
+                    terraform init -reconfigure
+                    terraform plan
                 """
             }
         }
 
-        stage('Plan') {
-            steps {
-                sh """
-                    cd 01-vpc
-                    terraform plan 
-                """
-            }
-        }
-
-        stage('Deploy') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-            }
-            steps {
-                sh """
-                    cd 01-vpc
-                    terraform apply -auto-approve
-                """
-            }
+        // stage('Deploy') {
+        //     input {
+        //         message "Should we continue?"
+        //         ok "Yes, we should."
+        //     }
+        //     steps {
+        //         sh """
+        //             cd 01-vpc
+        //             terraform apply -auto-approve
+        //         """
+        //     }
         }
     }
 
