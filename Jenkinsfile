@@ -53,6 +53,7 @@ pipeline {
                     terraform apply -auto-approve
                 """
             }
+        }
             
         // }
         // stage('Databases') {
@@ -78,7 +79,6 @@ pipeline {
             
         // }
 
-    }
 
     post {  
         always { 
