@@ -1,7 +1,8 @@
 # Mongodb
 
 module "mongodb" {
-  source = "../../terraform_aws_instance"
+  #source       = "../../terraform-aws-security-group"
+  source       = "git::https://github.com/SowRach/terraform_aws_instance.git?ref=main"
 
   ami                    = data.aws_ami.centos8.id
   instance_type          = "t3.small"
@@ -57,7 +58,8 @@ resource "terraform_data" "mongodb" {
 # Redis
 
 module "redis" {
-  source = "../../terraform_aws_instance"
+  #source       = "../../terraform-aws-security-group"
+  source        = "git::https://github.com/SowRach/terraform_aws_instance.git?ref=main"
 
   ami                    = data.aws_ami.centos8.id
   instance_type          = "t3.micro"
@@ -111,7 +113,8 @@ resource "terraform_data" "redis" {
 # Mysql
 
 module "mysql" {
-  source = "../../terraform_aws_instance"
+  #source       = "../../terraform-aws-security-group"
+  source       = "git::https://github.com/SowRach/terraform_aws_instance.git?ref=main"
 
   ami                    = data.aws_ami.centos8.id
   instance_type          = "t3.small"
@@ -165,7 +168,8 @@ resource "terraform_data" "mysql" {
 # Rabbitmq
 
 module "rabbitmq" {
-  source                 = "../../terraform_aws_instance"
+  # source                 = "../../terraform_aws_instance"
+  source       = "git::https://github.com/SowRach/terraform_aws_instance.git?ref=main"
   ami                    = data.aws_ami.centos8.id
   instance_type          = "t3.small"
   vpc_security_group_ids = [data.aws_ssm_parameter.rabbitmq_sg_id.value]

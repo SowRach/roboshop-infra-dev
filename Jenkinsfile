@@ -55,16 +55,16 @@ pipeline {
             }
         }
 
-        // stage('Databases') {
-        //     steps {
-        //         sh """
-        //             cd 04-databases
-        //             terraform init -reconfigure
-        //             terraform plan
-        //             terraform apply -auto-approve
-        //         """
-        //     }
-        // }
+        stage('Databases') {
+            steps {
+                sh """
+                    cd 04-databases
+                    terraform init -reconfigure
+                    terraform plan
+                    terraform apply -auto-approve
+                """
+            }
+        }
 
         // stage('Application-ALB') {
         //     steps {
