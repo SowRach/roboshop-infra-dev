@@ -71,17 +71,18 @@ pipeline {
             }
         }
 
-        // stage('Application-ALB') {
-        //     steps {
-        //         sh """
-        //             cd 05-app-alb
-        //             terraform init -reconfigure
-        //             terraform plan
-        //             terraform ${params.action} -auto-approve
-        //         """
-        //     }
-        // }
-    }  // ✅ closing stages
+        stage('Application-ALB') {
+            steps {
+                sh """
+                    cd 05-app-alb
+                    terraform init -reconfigure
+                    terraform plan
+                    terraform ${params.action} -auto-approve
+                """
+            }
+        }
+    }  
+    // ✅ closing stages
 
     post {  
         always { 
