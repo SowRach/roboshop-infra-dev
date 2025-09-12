@@ -4,15 +4,16 @@ pipeline {
             label 'Agent'
         }
     }
+
     options {
         ansiColor('xterm')
         timeout(time: 1, unit: 'HOURS')
         disableConcurrentBuilds()
     }
+
     parameters {
         choice(name: 'action', choices: ['apply', 'destroy'], description: 'Pick something')
-
-    // apply
+    }
 
     stages {
         stage('s3 Backend') {
@@ -21,7 +22,7 @@ pipeline {
                     cd 00-terraform-s3
                     terraform init -reconfigure
                     terraform plan 
-                    terraform apply -auto-approve
+                    terraform ${params.action} -auto-approve
                 """
             }
         }
@@ -32,7 +33,7 @@ pipeline {
                     cd 01-vpc
                     terraform init -reconfigure
                     terraform plan
-                    terraform apply -auto-approve
+                    terraform ${params.action} -auto-approve
                 """
             }
         }
@@ -43,7 +44,7 @@ pipeline {
                     cd 02-sg
                     terraform init -reconfigure
                     terraform plan
-                    terraform apply -auto-approve
+                    terraform ${params.action} -auto-approve
                 """
             }
         }
@@ -54,7 +55,7 @@ pipeline {
                     cd 03-vpn
                     terraform init -reconfigure
                     terraform plan
-                    terraform apply -auto-approve
+                    terraform ${params.action} -auto-approve
                 """
             }
         }
@@ -65,7 +66,7 @@ pipeline {
                     cd 04-databases
                     terraform init -reconfigure
                     terraform plan
-                    terraform apply -auto-approve
+                    terraform ${params.action} -auto-approve
                 """
             }
         }
@@ -76,7 +77,7 @@ pipeline {
         //             cd 05-app-alb
         //             terraform init -reconfigure
         //             terraform plan
-        //             terraform apply -auto-approve
+        //             terraform ${params.action} -auto-approve
         //         """
         //     }
         // }
