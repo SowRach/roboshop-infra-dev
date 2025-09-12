@@ -31,8 +31,8 @@ pipeline {
                     terraform apply -auto-approve
                 """
             }
-            
         }
+
         stage('SG') {
             steps {
                 sh """
@@ -42,8 +42,8 @@ pipeline {
                     terraform apply -auto-approve
                 """
             }
-            
         }
+
         stage('VPN') {
             steps {
                 sh """
@@ -54,8 +54,7 @@ pipeline {
                 """
             }
         }
-            
-        // }
+
         // stage('Databases') {
         //     steps {
         //         sh """
@@ -65,8 +64,8 @@ pipeline {
         //             terraform apply -auto-approve
         //         """
         //     }
-            
         // }
+
         // stage('Application-ALB') {
         //     steps {
         //         sh """
@@ -76,9 +75,8 @@ pipeline {
         //             terraform apply -auto-approve
         //         """
         //     }
-            
         // }
-
+    }  // ✅ closing stages
 
     post {  
         always { 
