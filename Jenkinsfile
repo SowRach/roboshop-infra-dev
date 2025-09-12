@@ -9,6 +9,10 @@ pipeline {
         timeout(time: 1, unit: 'HOURS')
         disableConcurrentBuilds()
     }
+    parameters {
+        choice(name: 'action', choices: ['apply', 'destroy'], description: 'Pick something')
+
+    // apply
 
     stages {
         stage('s3 Backend') {
