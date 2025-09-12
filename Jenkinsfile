@@ -6,8 +6,8 @@ pipeline {
     }
     options {
         ansiColor('xterm')
-        // timeout(time: 1, unit: 'HOURS')
-        // disableConcurrentBuilds()
+        timeout(time: 1, unit: 'HOURS')
+        disableConcurrentBuilds()
     }
 
     stages {
@@ -28,6 +28,16 @@ pipeline {
                     cd 01-vpc
                     terraform init -reconfigure
                     terraform plan
+                """
+            }
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
+            steps {
+                sh """
+                    cd 01-vpc
+                    terraform apply -auto-approve
                 """
             }
         }
