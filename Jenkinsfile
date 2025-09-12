@@ -44,39 +44,39 @@ pipeline {
             }
             
         }
-        stage('VPN') {
-            steps {
-                sh """
-                    cd 03-vpn
-                    terraform init -reconfigure
-                    terraform plan
-                    terraform apply -auto-approve
-                """
-            }
+        // stage('VPN') {
+        //     steps {
+        //         sh """
+        //             cd 03-vpn
+        //             terraform init -reconfigure
+        //             terraform plan
+        //             terraform apply -auto-approve
+        //         """
+        //     }
             
-        }
-        stage('Databases') {
-            steps {
-                sh """
-                    cd 04-databases
-                    terraform init -reconfigure
-                    terraform plan
-                    terraform apply -auto-approve
-                """
-            }
+        // }
+        // stage('Databases') {
+        //     steps {
+        //         sh """
+        //             cd 04-databases
+        //             terraform init -reconfigure
+        //             terraform plan
+        //             terraform apply -auto-approve
+        //         """
+        //     }
             
-        }
-        stage('Application-ALB') {
-            steps {
-                sh """
-                    cd 05-app-alb
-                    terraform init -reconfigure
-                    terraform plan
-                    terraform apply -auto-approve
-                """
-            }
+        // }
+        // stage('Application-ALB') {
+        //     steps {
+        //         sh """
+        //             cd 05-app-alb
+        //             terraform init -reconfigure
+        //             terraform plan
+        //             terraform apply -auto-approve
+        //         """
+        //     }
             
-        }
+        // }
 
     }
 
