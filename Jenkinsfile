@@ -33,19 +33,51 @@ pipeline {
             }
             
         }
+        stage('SG') {
+            steps {
+                sh """
+                    cd 02-sg
+                    terraform init -reconfigure
+                    terraform plan
+                    terraform apply -auto-approve
+                """
+            }
+            
+        }
+        stage('VPN') {
+            steps {
+                sh """
+                    cd 03-vpn
+                    terraform init -reconfigure
+                    terraform plan
+                    terraform apply -auto-approve
+                """
+            }
+            
+        }
+        stage('Databases') {
+            steps {
+                sh """
+                    cd 04-databases
+                    terraform init -reconfigure
+                    terraform plan
+                    terraform apply -auto-approve
+                """
+            }
+            
+        }
+        stage('Application-ALB') {
+            steps {
+                sh """
+                    cd 05-app-alb
+                    terraform init -reconfigure
+                    terraform plan
+                    terraform apply -auto-approve
+                """
+            }
+            
+        }
 
-        // stage('Deploy') {
-        //     input {
-        //         message "Should we continue?"
-        //         ok "Yes, we should."
-        //     }
-        //     steps {
-        //         sh """
-        //             cd 01-vpc
-        //             terraform apply -auto-approve
-        //         """
-        //     }
-        // }
     }
 
     post {  
