@@ -66,6 +66,14 @@ pipeline {
             }
         }
     }
+        // stage('Delete Backend Bucket') {
+        //     steps {
+        //        sh """
+        //         aws s3 rm s3://roboshop-dev-sowmya-r --recursive || true
+        //         aws s3 rb s3://roboshop-dev-sowmya-r --force || true
+        //         """
+        //     }
+        // }
 
     post {
         always {
