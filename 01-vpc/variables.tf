@@ -13,7 +13,7 @@ variable "common_tags" {
   type = map(any)
   default = {
     "Project"     = "Roboshop"
-    "Environment" = "Production"
+    "Environment" = "Dev"
     "ManagedBy"   = "Terraform"
   }
 
