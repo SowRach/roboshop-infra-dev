@@ -2,7 +2,7 @@ module "vpn" {
   # source = "../../terraform_aws_instance"
   source       = "terraform-aws-modules/ec2-instance/aws"
 
-  ami                    = data.aws_ami.RHEL9.id
+  ami                    = data.aws_ami.Redhat9.id
   name                   = "${local.ec2_name}-vpn"
   instance_type          = "t3.micro"
   vpc_security_group_ids = [data.aws_ssm_parameter.vpn_sg_id.value]
