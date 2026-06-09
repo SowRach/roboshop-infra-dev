@@ -106,15 +106,15 @@ module "web" {
   sg_name      = "web"
 }
 
-module "raiting" {
+# module "raiting" {
 
-  #source       = "../../terraform-aws-security-group"
-  source       = "git::https://github.com/SowRach/terraform-aws-security-group.git?ref=main"
-  environment  = var.environment
-  project_name = var.project_name
-  vpc_id       = data.aws_ssm_parameter.vpc_id.value
-  sg_name      = "raiting"
-}
+#   #source       = "../../terraform-aws-security-group"
+#   source       = "git::https://github.com/SowRach/terraform-aws-security-group.git?ref=main"
+#   environment  = var.environment
+#   project_name = var.project_name
+#   vpc_id       = data.aws_ssm_parameter.vpc_id.value
+#   sg_name      = "raiting"
+# }
 
 module "app_alb" {
 
