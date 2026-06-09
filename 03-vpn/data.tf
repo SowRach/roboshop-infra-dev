@@ -1,10 +1,10 @@
-data "aws_ami" "Redhat9" {
+data "aws_ami" "RHEL9" {
   owners      = ["973714476881"]
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["Redhat-9-DevOps-Practice"]
+    values = ["RHEL-9-DevOps-Practice"]
   }
 
   filter {
