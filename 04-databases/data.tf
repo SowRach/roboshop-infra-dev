@@ -1,10 +1,10 @@
-data "aws_ami" "centos8" {
+data "aws_ami" "Redhat9" {
   owners      = ["973714476881"]
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["RHEL-9-DevOps-Practice"]
+    values = ["Redhat-9-DevOps-Practice"]
   }
 
   filter {
@@ -18,14 +18,14 @@ data "aws_ami" "centos8" {
   }
 }
 
-data "aws_vpc" "default" {
-  default = true
-}
+# data "aws_vpc" "default" {
+#   default = true
+# }
 
-data "aws_subnet" "selected" {
-  vpc_id            = data.aws_vpc.default.id
-  availability_zone = "us-east-1a"
-}
+# data "aws_subnet" "selected" {
+#   vpc_id            = data.aws_vpc.default.id
+#   availability_zone = "us-east-1a"
+# }
 
 data "aws_ssm_parameter" "database_subnet_ids" {
   name = "/${var.project_name}/${var.environment}/database_subnet_ids"

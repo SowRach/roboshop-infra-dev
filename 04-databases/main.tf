@@ -4,7 +4,7 @@ module "mongodb" {
   #source       = "../../terraform-aws-security-group"
   source       = "git::https://github.com/SowRach/terraform_aws_instance.git?ref=main"
 
-  ami                    = data.aws_ami.centos8.id
+  ami                    = data.aws_ami.Redhat9.id
   instance_type          = "t3.small"
   vpc_security_group_ids = [data.aws_ssm_parameter.mongodb_sg_id.value]
   subnet_id              = local.database_subnet_id
@@ -61,7 +61,7 @@ module "redis" {
   #source       = "../../terraform-aws-security-group"
   source        = "git::https://github.com/SowRach/terraform_aws_instance.git?ref=main"
 
-  ami                    = data.aws_ami.centos8.id
+  ami                    = data.aws_ami.Redhat9.id
   instance_type          = "t3.micro"
   vpc_security_group_ids = [data.aws_ssm_parameter.redis_sg_id.value]
   subnet_id              = local.database_subnet_id
@@ -116,7 +116,7 @@ module "mysql" {
   #source       = "../../terraform-aws-security-group"
   source       = "git::https://github.com/SowRach/terraform_aws_instance.git?ref=main"
 
-  ami                    = data.aws_ami.centos8.id
+  ami                    = data.aws_ami.Redhat9.id
   instance_type          = "t3.small"
   vpc_security_group_ids = [data.aws_ssm_parameter.mysql_sg_id.value]
   subnet_id              = local.database_subnet_id
@@ -170,7 +170,7 @@ resource "terraform_data" "mysql" {
 module "rabbitmq" {
   # source                 = "../../terraform_aws_instance"
   source       = "git::https://github.com/SowRach/terraform_aws_instance.git?ref=main"
-  ami                    = data.aws_ami.centos8.id
+  ami                    = data.aws_ami.Redhat9.id
   instance_type          = "t3.small"
   vpc_security_group_ids = [data.aws_ssm_parameter.rabbitmq_sg_id.value]
   subnet_id              = local.database_subnet_id
